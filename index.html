@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lizzy's Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <h1 class="brand">Lizzy's <span>Store</span></h1>
+      <button class="cart-btn" id="cartBtn">
+        🛍 Carrito <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Belleza · Cuidado · Hogar</p>
+      <h2>Todo lo que buscas, en un solo lugar.</h2>
+      <p class="hero-sub">Maquillaje, cuidado facial y capilar, electrodomésticos y más — con disponibilidad real, siempre visible.</p>
+    </div>
+  </section>
+
+  <nav class="categories wrap" id="categoryNav">
+    <button class="cat-pill active" data-cat="todos">Todos</button>
+    <button class="cat-pill" data-cat="maquillaje">Maquillaje</button>
+    <button class="cat-pill" data-cat="facial">Cuidado facial</button>
+    <button class="cat-pill" data-cat="capilar">Cuidado capilar</button>
+    <button class="cat-pill" data-cat="electrodomesticos">Electrodomésticos</button>
+    <button class="cat-pill" data-cat="variedad">Variedad</button>
+  </nav>
+
+  <main class="wrap">
+    <div id="demoNotice" class="demo-notice" style="display:none;">
+      Estás viendo productos de <strong>ejemplo</strong>. Conecta tu base de datos en <code>config.js</code> para mostrar tus productos reales.
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </main>
+
+  <!-- Panel del carrito -->
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-head">
+      <h3>Tu carrito</h3>
+      <button id="closeCart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">L 0.00</strong>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">Pagar ahora</button>
+      <p class="cart-note">Los productos "reponible en 1 semana" se entregan aprox. 7 días después de tu compra.</p>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <footer class="footer">
+    <div class="wrap">© <span id="year"></span> Lizzy's Store</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
