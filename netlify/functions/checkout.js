@@ -1,4 +1,4 @@
-/ Esta función se ejecuta en el servidor de Netlify (no en el navegador),
+// Esta función se ejecuta en el servidor de Netlify (no en el navegador),
 // así tu clave secreta de Stripe nunca queda expuesta.
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
