@@ -109,23 +109,15 @@ function closeCart() {
   document.getElementById("overlay").classList.remove("show");
 }
 
-async function checkout() {
+// PayPal no acepta lempiras (HNL): cobra en USD. Ajusta esta tasa cuando cambie.
+function checkout() {
   if (cart.length === 0) return;
-  try {
-    const res = await fetch("/.netlify/functions/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: cart }),
-    });
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url; // redirige a Stripe Checkout
-    } else {
-      alert("No se pudo iniciar el pago. Revisa la configuración de Stripe (ver GUIA.md).");
-    }
-  } catch (e) {
-    alert("Esta función solo funciona una vez publicada la tienda en Netlify con Stripe configurado (ver GUIA.md).");
-  }
+  const lineas = cart.map(i => `• ${i.name} x${i.qty} — L ${(i.price * i.qty).toFixed(2)}`).join("\n");
+  const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  const mensaje =
+    `¡Hola! Quiero hacer este pedido en Lizzy's Store:\n\n${lineas}\n\nTotal: L ${total.toFixed(2)}\n\nMi nombre:\nDirección de entrega:`;
+  const url = `https://wa.me/${WHATSAPP_NEGOCIO}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
 }
 
 // Eventos
